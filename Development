@@ -1,0 +1,95 @@
+# Development-Phase
+
+We plan to make our product using the GPS/GSM infrastructure that is used in most of the vehicle tracking systems for our model to work.
+
+We will be using an Arduino NANO board which will be programmed to recognize and use the SIM card that is inserted in the module and able to send the live location at that point of time of it whenever requested.
+
+# Proposed Design
+
+1.	Circuit Connections:
+o	Connect the VCC and GND pins of the Arduino to the positive and negative rails of the breadboard, respectively.
+o	Connect the VCC and GND pins of the SIM800L GSM module to the breadboard's power rails.
+o	Connect the RX and TX pins of the SIM800L module to digital pins 10 and 11 of the Arduino, respectively.
+o	Connect the VCC and GND pins of the NEO-6M GPS module to the breadboard's power rails.
+o	Connect the RX and TX pins of the NEO-6M module to digital pins 2 and 3 of the Arduino, respectively.
+o	If using an accelerometer module, connect it to the appropriate digital pins and power it up.
+
+2.	Power Supply:
+o	Connect the power supply (battery or USB power bank) to the Arduino's power jack or Vin pin and GND pin.
+o	Ensure that the power supply provides the necessary voltage (typically 5V) and sufficient current to power all the components.
+
+3.	Arduino Programming:
+o	Install the necessary libraries for the GSM module (e.g., TinyGSM) and GPS module (e.g., TinyGPS++) in the Arduino IDE.
+o	Write the code to initialize the GSM and GPS modules, retrieve GPS coordinates, and send SMS messages.
+o	Implement optional features such as motion detection using the accelerometer module.
+
+4.	Enclosure and Mounting:
+o	Design or select an appropriate enclosure for the components, considering the size and protection requirements.
+o	Mount the Arduino, GSM module, GPS module, and optional accelerometer module securely within the enclosure.
+o	Ensure that the GPS module has a clear view of the sky for better satellite signal reception.
+
+5.	User Interface (Optional):
+o	Develop a user interface to monitor and control the anti-theft tracker.
+o	This can be a mobile app, a web-based dashboard, or even a simple LCD display connected to the Arduino.
+o	The interface can display real-time location updates, SMS notifications, and other relevant information.
+
+6.	Testing and Deployment:
+o	Upload the Arduino code to the Arduino Uno R3 board.
+o	Test the functionality of each component, including GPS reception, SMS sending, and optional features like motion detection.
+o	Verify the accuracy of the GPS coordinates and the reliability of the communication with the GSM module.
+o	Make any necessary adjustments to the code or circuitry based on the testing results.
+o	Deploy the   anti-theft tracker in the desired location, ensuring it is securely mounted and properly powered.
+
+# Pseudocode
+1.	Initialize the required libraries and define the necessary pins for the GPS and GSM modules. In this case the required libraries are: TinyGPS++ and Adafruit_FONA.
+//#include”Adafruit_FONA.h”
+//#include<TinyGPS++.h>
+
+2.	Create Software Serial objects to communicate with the GPS and GSM modules.
+//#include<SoftwareSerial.h>
+//SoftwareSerial fonaSS = SoftwareSerial(FONA_TX, FONA_RX);
+//SoftwareSerial *fonaSerial = &fonaSS;
+
+3.	Create a TinyGPSPlus object to parse the GPS data.
+//static const uint32_t GPSBaud = 9600;
+//TinyGPSPlus gps;
+
+4.	In the setup function:
+o	Initialize the serial communication for debugging purposes.
+o	Begin the communication with the GPS and GSM modules at the specified baud rates.
+o	Configure the GPS module to provide updates at a desired rate.
+o	Verify the communication with the GSM module and set it to SMS text mode.
+
+5.	In the loop function:
+o	Check for GPS data availability by reading from the GPS serial buffer.
+o	If GPS data is available:
+	Parse the GPS data using the TinyGPSPlus library.
+	Retrieve the latitude and longitude values.
+	Check for any additional relevant GPS data (e.g., speed, altitude).
+	If desired, implement motion detection logic using an accelerometer module.
+	Send the GPS data via SMS using the GSM module.
+	Print the GPS data to the serial monitor for debugging purposes.
+
+
+
+//void loop() {
+    getloc();
+    char* bufPtr = fonaNotificationBuffer;  
+   if (fona.available())     
+  {
+    int slot = 0;          
+    int charCount = 0;
+//    Read the notification into fonaInBuffer
+    do  {
+      *bufPtr = fona.read();
+      //Serial.write(*bufPtr);
+       oled.clear();
+       oled.print(fonaNotificationBuffer);
+      delay(1);
+    }
+
+
+6.	Implement any additional functions for sending SMS alerts, detecting motion, or other desired features.
+
+7.	Test the system by uploading the code to the Arduino and ensuring that it can retrieve accurate GPS data, send SMS messages, and execute any optional features.
+

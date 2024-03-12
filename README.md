@@ -70,6 +70,12 @@ Designing an anti-theft tracker involves several components and considerations, 
 
 6. **Sensors (Optional):** Depending on the application, additional sensors such as accelerometers, gyroscopes, or tamper sensors can be included to detect movement, tampering, or environmental conditions.
 
+   
+![Components](https://github.com/abioticgenius/Anti-Theft-Tracker/assets/70765544/669170c4-ab5e-4575-b2fb-0c34c1c96fdc)
+
+![circuit_diagram](https://github.com/abioticgenius/Anti-Theft-Tracker/assets/70765544/baec64a0-3390-49a8-8551-0af516bf85e3)
+
+
 ### Software Architecture:
 
 1. **Firmware:** Develop firmware for the microcontroller to control hardware components, collect sensor data, and manage power consumption. Implement algorithms for GPS parsing, cellular communication, and error handling.

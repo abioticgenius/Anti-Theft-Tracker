@@ -90,7 +90,9 @@ Designing an anti-theft tracker involves several components and considerations, 
 
 2. **Database:** Use a database system to store historical tracking data, user information, and device configurations. Choose a scalable and reliable database like MySQL or MongoDB.
 
-3. **API:** Develop an API for communication between the tracker devices and the server backend. Define endpoints for data transmission, device registration, authentication, and retrieval of tracking information.
+3. **API:** Develop an API  or use Google Messages for communication between the tracker device and the server backend. Define endpoints for data transmission, device registration, authentication, and retrieval of tracking information.
+
+![Flowchart](https://github.com/abioticgenius/Anti-Theft-Tracker/assets/70765544/3cd112f6-dbd9-4e3a-9159-ec1b08fffc89)
 
 ### User Interface:
 
